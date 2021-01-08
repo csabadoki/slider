@@ -13,7 +13,7 @@ body {
 }
 
 main {
-    width: 60%;
+    width: 80%;
     background-color: rgba(255, 255, 255, 1);
     margin: 0 auto;
     box-shadow: 0 0 4rem rgba(0, 0, 0, .2);
@@ -32,13 +32,12 @@ main {
 
 .slider-holder {
     display: block;
-    width: 800%;
-    height: 500px;
+    height: 600px;
+    transition: margin 1s ease-in-out;
 }
 
 .slider-item {
     display: block;
-    width: calc(100% / 8);
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
     float: left;
@@ -47,34 +46,3 @@ main {
     background-size: cover;
 }
 
-.slider-item:nth-child(1) {
-    background-image: url(../images/2020-02-14\ 14.49.48.jpg);
-}
-
-.slider-item:nth-child(2) {
-    background-image: url(../images/IMG_1542.jpg);
-}
-
-.slider-item:nth-child(3) {
-    background-image: url(../images/IMG_1632.jpg);
-}
-
-.slider-item:nth-child(4) {
-    background-image: url(../images/IMG_2068.jpg);
-}
-
-.slider-item:nth-child(5) {
-    background-image: url(../images/IMG_2408.jpg);
-}
-
-.slider-item:nth-child(6) {
-    background-image: url(../images/IMG_2492.jpg);
-}
-
-.slider-item:nth-child(7) {
-    background-image: url(../images/IMG_5530.jpg);
-}
-
-.slider-item:nth-child(8) {
-    background-image: url(../images/IMG_5590.jpg);
-}
