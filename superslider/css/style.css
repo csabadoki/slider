@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main {
+    width: 60%;
+    background-color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
+    box-shadow: 0 0 4rem rgba(0, 0, 0, .2);
+}
+
+.slider {
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto;
+    border: 0;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.slider-holder {
+    display: block;
+    width: 800%;
+    height: 500px;
+}
+
+.slider-item {
+    display: block;
+    width: calc(100% / 8);
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    float: left;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.slider-item:nth-child(1) {
+    background-image: url(../images/2020-02-14\ 14.49.48.jpg);
+}
+
+.slider-item:nth-child(2) {
+    background-image: url(../images/IMG_1542.jpg);
+}
+
+.slider-item:nth-child(3) {
+    background-image: url(../images/IMG_1632.jpg);
+}
+
+.slider-item:nth-child(4) {
+    background-image: url(../images/IMG_2068.jpg);
+}
+
+.slider-item:nth-child(5) {
+    background-image: url(../images/IMG_2408.jpg);
+}
+
+.slider-item:nth-child(6) {
+    background-image: url(../images/IMG_2492.jpg);
+}
+
+.slider-item:nth-child(7) {
+    background-image: url(../images/IMG_5530.jpg);
+}
+
+.slider-item:nth-child(8) {
+    background-image: url(../images/IMG_5590.jpg);
+}
