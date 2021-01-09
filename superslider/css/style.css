@@ -20,6 +20,7 @@ main {
 }
 
 .slider {
+    position: relative;
     display: block;
     box-sizing: border-box;
     padding: 0;
@@ -33,7 +34,7 @@ main {
 .slider-holder {
     display: block;
     height: 600px;
-    transition: margin 1s ease-in-out;
+    transition: margin .8s ease-in-out;
 }
 
 .slider-item {
@@ -44,5 +45,74 @@ main {
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;
+}
+
+.arrow {
+    border: solid rgba(255, 255, 255, 1);
+    border-width: 0 3px 3px 0;
+    position: absolute;
+    cursor: pointer;
+    padding: 3px;
+    top: 50%;
+}
+
+.next-Button {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    right: 1rem;
+}
+
+.prev-Button {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    left: 1rem;
+    
+}
+
+.slider-caption {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    margin-bottom: calc(1rem + 40px);
+    color: rgba(255, 255, 255, 1);
+    font-size: .8rem;
+    font-weight: 400;
+    text-shadow: 0 .1rem .2rem rgba(0, 0, 0, 1);
+}
+
+.image-Counter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 1rem;
+    color: rgba(255, 255, 255, 1);
+    font-size: .8rem;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, .2);
+    padding: .2rem .5rem;
+}
+
+.slider-footer {
+    position: relative;
+    display: flex;
+}
+
+.slider-dots {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin: auto;
+}
+
+.slider-dot {
+    float: left;
+    height: 8px;
+    width: 8px;
+    margin: 16px 4px;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
