@@ -1,40 +1,6 @@
 'use strict'
 
-const images = [
-    {
-        imageUrl: './superslider/images/2020-02-14.jpg',
-        title:    'Wintertime',
-    },
-    {
-        imageUrl: './superslider/images/IMG_1542.jpg',
-        title:    'Sunset',
-    },
-    {
-        imageUrl: './superslider/images/IMG_1632.jpg',
-        title:    'Bird',
-    },
-    {
-        imageUrl: './superslider/images/IMG_2068.jpg',
-        title:    'Butterfly',
-    },
-    {
-        imageUrl: './superslider/images/IMG_2408.jpg',
-        title:    'Balaton',
-    },
-    {
-        imageUrl: './superslider/images/IMG_2492.jpg',
-        title:    'Tihany',
-    },
-    {
-        imageUrl: './superslider/images/IMG_5530.jpg',
-        title:    'Cloudy',
-    },
-    {
-        imageUrl: './superslider/images/IMG_5590.jpg',
-        title:    'Madonna',
-    },
-];
-    
+import { params, images } from './config.js';
 
 const slider = document.querySelector('.slider');
  const numbersOfImages = images.length;
@@ -43,10 +9,10 @@ let currentNumber = 0;
 let isSlideAble = true;
 
 // Holder létrehozása
-const sliderWidthStyle = 'width: '+(100 * numbersOfImages)+'%;'
+const sliderDimension = 'height: '+params.sliderHeight+'px; width: '+(100 * numbersOfImages)+'%;'
 const sliderHolder = document.createElement('div');
 sliderHolder.classList.add('slider-holder');
-sliderHolder.setAttribute('style', sliderWidthStyle);
+sliderHolder.setAttribute('style', sliderDimension);
 slider.appendChild(sliderHolder);
 
 //Footer létrehozása
@@ -55,9 +21,9 @@ sliderFooter.classList.add('slider-footer');
 slider.appendChild(sliderFooter);
 
 //Dot tároló (Dots) létrehozása
-const sliderDots = document.createElement('div');
-sliderDots.classList.add('slider-dots');
-sliderFooter.appendChild(sliderDots);
+const dots = document.createElement('div');
+dots.classList.add('slider-dots');
+sliderFooter.appendChild(dots);
 
 
 // Képtömb bejárása és a kép- és dot elemek létrehozása
@@ -70,9 +36,17 @@ images.forEach((element, index) => {
     //Dotok létrehozása
     const dot = document.createElement('div');
     dot.classList.add('slider-dot');
-    sliderDots.appendChild(dot);
+    dots.appendChild(dot);
 });
 const sliderItems = document.querySelectorAll('.slider-item');
+const sliderDots = document.querySelectorAll('.slider-dot');
+
+// Az aktuális dot beállítása
+const setCurrentDot = () => {
+    sliderDots.forEach(element => element.classList.remove('slider-dot_selected'));
+    sliderDots[currentNumber].classList.add('slider-dot_selected')
+}
+setCurrentDot();
 
 // Előző gomb hozzáadása
 const prevButton = document.createElement('div');
@@ -120,9 +94,10 @@ const getNextImage = (slideState) => {
     if (currentNumber === (numbersOfImages - 1)) currentNumber = 0;
     else currentNumber +=1;
     console.log(currentNumber);
-    sliderHolder.setAttribute('style', 'margin-left: -'+(currentNumber * getImageWidth())+'px; '+sliderWidthStyle);
+    sliderHolder.setAttribute('style', 'margin-left: -'+(currentNumber * getImageWidth())+'px; '+sliderDimension);
     setTimeout(setCaption, 400);
     setTimeout(setImageCounter, 400);
+    setTimeout(setCurrentDot, 400);
 }
 
 // előző képre lapozás
@@ -130,9 +105,20 @@ const getPrevImage = (slideState) => {
     isSlideAble = slideState;
     if (currentNumber === 0) currentNumber = (numbersOfImages - 1);
     else currentNumber -=1;
-    sliderHolder.setAttribute('style', 'margin-left: -'+(currentNumber * getImageWidth())+'px;'+sliderWidthStyle);
+    sliderHolder.setAttribute('style', 'margin-left: -'+(currentNumber * getImageWidth())+'px;'+sliderDimension);
     setTimeout(setCaption, 400);
     setTimeout(setImageCounter, 400);
+    setTimeout(setCurrentDot, 400);
+}
+
+// Lapozás adott képre
+const goToImage = (slideState, index) => {
+    isSlideAble = slideState;
+    currentNumber = index;
+    sliderHolder.setAttribute('style', 'margin-left: -'+(currentNumber * getImageWidth())+'px; '+sliderDimension);
+    setTimeout(setCaption, 400);
+    setTimeout(setImageCounter, 400);
+    setTimeout(setCurrentDot, 400);
 }
 
 // Automatikus lapozás
@@ -141,7 +127,17 @@ const autoslide = () => {
     else isSlideAble= true;
 }
 
-setInterval(autoslide, 5000);
+setInterval(autoslide, params.sliderinterval);
 
+// Eseménykezelő
 (() => nextButton.addEventListener('click', () => getNextImage(false)))();
 (() => prevButton.addEventListener('click', () => getPrevImage(false)))();
+
+sliderDots.forEach((element, index) => {
+    element.addEventListener('click', () => goToImage(false, index));
+});
+
+
+
+
+
